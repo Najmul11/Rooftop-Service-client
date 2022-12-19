@@ -1,13 +1,19 @@
+import {RouterProvider} from "react-router-dom"
+import React, { createContext, useState } from 'react';
 import { router } from "./Router/Routes";
-import {RouterProvider} from 'react-router-dom'
 
+export const DarkContext=createContext()
 
 
 function App() {
+  const [darkMode, setDarkMode]=useState(false)
+  const darkmode={darkMode, setDarkMode}
   return (
-    <div>
-      <RouterProvider router={router}></RouterProvider>
-    </div>
+      <DarkContext.Provider value={darkmode}>
+        <div className={darkMode ? 'dark' :""}>
+          <RouterProvider router={router}></RouterProvider>
+        </div>
+      </DarkContext.Provider>
   );
 }
 
