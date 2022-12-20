@@ -4,10 +4,11 @@ import './Home.css'
 import { AiOutlineDown } from "react-icons/ai";
 import HomeServices from '../HomeServices/HomeServices';
 import Experience from '../Experince/Experience';
+import Faq from '../Faq/Faq';
 const Home = () => {
     return (
         <div>
-            <div className='bg-green-200 relative w-full'>
+            <div className=' relative w-full'>
                 <div className='landing-img'>
                     <img src={img1} className='w-full min-h-screen' alt="" />
                 </div>
@@ -28,6 +29,7 @@ const Home = () => {
                     <Experience number={'80+'} info={'ELITE CUSTOMERS'}></Experience>
                 </div>
             </div>
+            <Faq></Faq>
         </div>
     );
 };
