@@ -11,7 +11,7 @@ const Blog = () => {
                     <div className='w-1/2 pt-8'>
                         <div className="card-body">
                             <h2 className=" card-title text-5xl font-semibold">Milestone 11 O Finish<br />kore fellam</h2>
-                            <h4 className='text-2xl font-medium mt-10'>Frequrntly asked questions</h4>
+                            <h4 className='text-2xl font-medium mt-10'>Matha kapanu questions</h4>
                             <div className='mt-3'>
                                 {
                                     qna.map(q=><Item key={q.id} title={q.ques} description={q.ans}></Item>)
