@@ -1,11 +1,37 @@
 import React from 'react';
 
 const AddService = () => {
+
+    const handleAddService=(e)=>{
+        e.preventDefault()
+        const form=e.target
+        const name=form.name.value
+        const img2=form.image.value
+        const price=form.price.value
+        const description=form.description.value
+
+        const service={img2, name, price, description}
+        console.log(service);
+    }
     return (
-        <div>
-            
+        <div className='dark:bg-gray-800 min-h-screen'>
+            <div className="container mx-auto py-20">
+                <div className="card md:w-1/2 mx-auto  shadow-sm border dark:bg-gray-300">
+                    <form onSubmit={handleAddService} className="card-body">
+                        <h2 className="card-title">Add service</h2>
+                        <input type="text" placeholder="service name" name='name' className="input input-bordered w-full mt-2" />
+                        <input type="text" placeholder="service image url" name='image' className="input input-bordered w-full mt-2" />
+                        <input type="number" placeholder="rating" name='price' className="input input-bordered w-full mt-2" />
+                        <input type="text" placeholder="description" name='description' className="input input-bordered w-full mt-2" />
+                        <div className="card-actions justify-end">
+                        <button className="btn px-5 py-2 text-black dark:bg border-teal-400 mt-10 bg-transparent hover:bg-teal-50
+                             hover:border-teal-400 dark:text-gray-800 dark:hover:bg-teal-500">Add service</button>
+                        </div>
+                    </form>
+                </div>  
+            </div>
         </div>
     );
-};
+}; 
 
 export default AddService;

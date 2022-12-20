@@ -29,10 +29,7 @@ const SingleServiceDetail = () => {
                         <div className="card-body">
                             <h2 className=" card-title text-5xl font-semibold">{name}</h2>
                             <p className='mt-5'>{description}</p>
-                            <div className='flex justify-between items-center mt-5'>
-                                <span className='text-4xl font-medium'>${price}</span>
-                                <span className='text-xl font-medium '>Rating: {rating}</span>
-                            </div>
+                            <span className='text-4xl font-medium mt-5'>${price}</span>
                         </div>
                     </div>
                     <div className='md:w-1/2'>
