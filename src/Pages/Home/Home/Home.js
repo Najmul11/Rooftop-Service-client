@@ -2,7 +2,8 @@ import React from 'react';
 import img1 from '../../../assets/Home/landing.png';
 import './Home.css'
 import { AiOutlineDown } from "react-icons/ai";
-import Services from '../../Services/Services';
+import HomeServices from '../HomeServices/HomeServices';
+import Experience from '../Experince/Experience';
 const Home = () => {
     return (
         <div>
@@ -18,7 +19,15 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            <Services></Services>
+            <HomeServices></HomeServices>
+            <div className='dark:bg-gray-800 py-20'>
+                <div className='container mx-auto  grid grid-cols-4 justify-items-center'>
+                    <Experience number={4} info={'YEARS OF EXPERIENCE'}></Experience>
+                    <Experience number={6} info={'QUALITY SERVICES'}></Experience>
+                    <Experience number={'350+'} info={'COMPLETED PROJECTS'}></Experience>
+                    <Experience number={'80+'} info={'ELITE CUSTOMERS'}></Experience>
+                </div>
+            </div>
         </div>
     );
 };
