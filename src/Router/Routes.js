@@ -25,7 +25,7 @@ export const router=createBrowserRouter([
             },
             {
                 path:'/services/:id',
-                // loader:({params})
+                // loader:({params})=>fetch(`https://roof-doctor-server-najmul11.vercel.app/services/${params.id}`),
                 element:<SingleServiceDetail></SingleServiceDetail>
             },
             {
