@@ -1,4 +1,5 @@
 import React, {useContext} from 'react';
+import useTitle from '../../hooks/useTitle'
 import {Link, useLocation, useNavigate} from "react-router-dom"
 import { FcGoogle,  } from "react-icons/fc";
 import {AiFillFacebook} from "react-icons/ai";
@@ -6,6 +7,7 @@ import { AuthContext } from '../../Contexts/AuthProvider';
 import toast, { Toaster } from 'react-hot-toast';
 
 const Login = () => {
+    useTitle('login')
     const {signInWithGoogle, signInWithFacebook, signIn}=useContext(AuthContext)
     const location=useLocation()
     const navigate=useNavigate()

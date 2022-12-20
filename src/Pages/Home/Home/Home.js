@@ -5,7 +5,11 @@ import { AiOutlineDown } from "react-icons/ai";
 import HomeServices from '../HomeServices/HomeServices';
 import Experience from '../Experince/Experience';
 import Faq from '../Faq/Faq';
+import useTitle from '../../../hooks/useTitle'
+
+
 const Home = () => {
+    useTitle('home')
     return (
         <div>
             <div className=' relative w-full'>

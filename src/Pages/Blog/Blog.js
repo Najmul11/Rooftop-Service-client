@@ -2,8 +2,11 @@ import React from 'react';
 import Item from '../Shared/Item/Item';
 import qnaImg from '../../assets/blog/qna.png'
 import qna from '../../Utilities/qna'
+import useTitle from '../../hooks/useTitle'
+
 
 const Blog = () => {
+    useTitle('blog')
     return (
         <div className='dark:bg-gray-800'>
             <div className='container mx-auto py-28 b'>

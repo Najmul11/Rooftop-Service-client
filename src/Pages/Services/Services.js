@@ -2,8 +2,10 @@ import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import ServiceDetail from './ServiceDetail/ServiceDetail';
 import Slider from './Slider/Slider';
+import useTitle from '../../hooks/useTitle'
 
 const Services = () => {
+    useTitle('services')
     const allServices=useLoaderData()
     return (
         <div className='dark:bg-gray-800'>

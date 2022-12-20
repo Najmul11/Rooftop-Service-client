@@ -4,10 +4,13 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { AuthContext } from '../../Contexts/AuthProvider';
 import toast, { Toaster } from 'react-hot-toast';
+import useTitle from '../../hooks/useTitle'
+
 
 
 
 const Register = () => {
+    useTitle('register')
     const {signInWithGoogle, signInWithFacebook, createUser,updateUserProfile}=useContext(AuthContext)
     const navigate=useNavigate()
     // create user with email/pass
