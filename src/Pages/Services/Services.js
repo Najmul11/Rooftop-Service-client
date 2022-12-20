@@ -1,12 +1,26 @@
-import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import React,{useState, useEffect} from 'react';
 import ServiceDetail from './ServiceDetail/ServiceDetail';
 import Slider from './Slider/Slider';
 import useTitle from '../../hooks/useTitle'
+import { InfinitySpin } from 'react-loader-spinner';
 
 const Services = () => {
     useTitle('services')
-    const allServices=useLoaderData()
+    const [loading, setLoading]=useState(false)
+    const [allServices, setAllServices]=useState([])
+    useEffect(()=>{
+        setLoading(true)
+        fetch('https://roof-doctor-server-najmul11.vercel.app/allservices')
+        .then(res=>res.json())
+        .then(data=>setAllServices(data))
+        .finally(()=>setLoading(false))
+    },[])
+
+    if (loading) {
+        return <div className='min-h-screen flex items-center justify-center dark:bg-gray-800'>
+                <InfinitySpin width='200' color="#00baa6" />
+            </div>
+    }
     return (
         <div className='dark:bg-gray-800'>
             <div className='container mx-auto'>
