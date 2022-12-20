@@ -35,6 +35,13 @@ const Navbar = () => {
                         <li className="px-3"><Link to='/' className="rounded-md btn btn-ghost">Home</Link></li>
                         <li className="px-3"><NavLink to='/services' className='btn btn-ghost rounded-md'>Services</NavLink></li>
                         <li className="px-3"><NavLink to='/blog' className='btn btn-ghost rounded-md'>Blog</NavLink></li>
+                        {
+                        user? <>
+                                <li className="px-3"><NavLink to='/services' className='btn btn-ghost rounded-md'>My reviews</NavLink></li>
+                                <li className="px-3"><NavLink to='/services' className='btn btn-ghost rounded-md'>Add service</NavLink></li>
+                                <li><button onClick={handleLogout} className="btn btn-ghost rounded-md">Logout</button></li>
+                             </> :'' 
+                       }
                         </ul>
                     </div>
                     <Link to='/' className="normal-case font-mono text-4xl flex items-center"><img src={brandLogo} style={{height:'60px'}} alt="" /></Link>
@@ -44,6 +51,13 @@ const Navbar = () => {
                        <li className="px-3"><Link to='/' className="rounded-md btn btn-ghost">Home</Link></li>
                        <li className="px-3"><NavLink to='/services' className='btn btn-ghost rounded-md'>Services</NavLink></li>
                        <li className="px-3"><NavLink to='/blog' className='btn btn-ghost rounded-md'>Blog</NavLink></li>
+                       {
+                        user? <>
+                                <li className="px-3"><NavLink to='/services' className='btn btn-ghost rounded-md'>My reviews</NavLink></li>
+                                <li className="px-3"><NavLink to='/services' className='btn btn-ghost rounded-md'>Add service</NavLink></li>
+                                <li><button onClick={handleLogout} className="btn btn-ghost rounded-md">Logout</button></li>
+                             </> :'' 
+                       }
                     </ul>
                 </div>
                 <div className="navbar-end">
