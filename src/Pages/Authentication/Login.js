@@ -42,7 +42,7 @@ const Login = () => {
         .catch(error=>{})
     }
     return (
-        <div className='dark:bg-teal-500'>
+        <div className='dark:bg-gray-800'>
             <div className='container mx-auto py-10'>
                 <div className="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mx-auto" >
                     <form onSubmit={handleSubmit} className="space-y-6" action="#">
