@@ -22,6 +22,7 @@ const AddService = () => {
         })
         .then(res=>{})
         .then(()=>{
+            e.target.reset()
             toast.success('Service added successfully');
         })
     }
@@ -31,10 +32,10 @@ const AddService = () => {
                 <div className="card md:w-1/2 mx-auto  shadow-sm border dark:bg-gray-300">
                     <form onSubmit={handleAddService} className="card-body">
                         <h2 className="card-title">Add service</h2>
-                        <input type="text" placeholder="service name" name='name' className="input input-bordered w-full mt-2" />
-                        <input type="text" placeholder="service image url" name='image' className="input input-bordered w-full mt-2" />
-                        <input type="number" placeholder="price" name='price' className="input input-bordered w-full mt-2" />
-                        <input type="text" placeholder="description" name='description' className="input input-bordered w-full mt-2" />
+                        <input type="text" placeholder="service name" name='name' className="input input-bordered w-full mt-2" required />
+                        <input type="text" placeholder="service image url" name='image' className="input input-bordered w-full mt-2"  required/>
+                        <input type="number" placeholder="price (numbers only)" name='price' className="input input-bordered w-full mt-2" required />
+                        <input type="text" placeholder="description" name='description' className="input input-bordered w-full mt-2" required />
                         <div className="card-actions justify-end">
                         <button className="btn px-5 py-2 text-black dark:bg border-teal-400 mt-10 bg-transparent hover:bg-teal-50
                              hover:border-teal-400 dark:text-gray-800 dark:hover:bg-teal-500">Add service</button>
