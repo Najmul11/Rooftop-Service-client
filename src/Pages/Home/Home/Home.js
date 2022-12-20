@@ -20,7 +20,7 @@ const Home = () => {
                 </div>
             </div>
             <HomeServices></HomeServices>
-            <div className='dark:bg-gray-800 py-20'>
+            <div className='dark:bg-gray-800 py-20' id='experience'>
                 <div className='container mx-auto  grid grid-cols-4 justify-items-center'>
                     <Experience number={4} info={'YEARS OF EXPERIENCE'}></Experience>
                     <Experience number={6} info={'QUALITY SERVICES'}></Experience>

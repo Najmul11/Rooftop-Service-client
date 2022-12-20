@@ -10,7 +10,7 @@ const HomeServices = () => {
         .then(data=>setAllServices(data))
     },[])
     return (
-        <div className=' dark:bg-gray-800 py-20'>
+        <div className=' dark:bg-gray-800 py-20' id='services'>
             <div className='container mx-auto text-center'>
                 <h4 className='text-2xl font-medium overline text-center text-teal-400'>Top Services</h4>
                 <h2 className='text-center text-5xl font-semibold mt-3 dark:text-teal-400'>Best Rooftop Expert</h2>
