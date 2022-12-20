@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useContext} from "react";
 import {NavLink,Link} from "react-router-dom"
 import { HiOutlineMoon, HiOutlineSun } from "react-icons/hi";
 import {BsWhatsapp} from "react-icons/bs";
@@ -37,8 +37,8 @@ const Navbar = () => {
                         <li className="px-3"><NavLink to='/blog' className='btn btn-ghost rounded-md'>Blog</NavLink></li>
                         {
                         user? <>
-                                <li className="px-3"><NavLink to='/services' className='btn btn-ghost rounded-md'>My reviews</NavLink></li>
-                                <li className="px-3"><NavLink to='/services' className='btn btn-ghost rounded-md'>Add service</NavLink></li>
+                                <li className="px-3"><NavLink to='/reviews' className='btn btn-ghost rounded-md'>My reviews</NavLink></li>
+                                <li className="px-3"><NavLink to='/addservice' className='btn btn-ghost rounded-md'>Add service</NavLink></li>
                                 <li><button onClick={handleLogout} className="btn btn-ghost rounded-md">Logout</button></li>
                              </> :'' 
                        }
@@ -53,8 +53,8 @@ const Navbar = () => {
                        <li className="px-3"><NavLink to='/blog' className='btn btn-ghost rounded-md'>Blog</NavLink></li>
                        {
                         user? <>
-                                <li className="px-3"><NavLink to='/services' className='btn btn-ghost rounded-md'>My reviews</NavLink></li>
-                                <li className="px-3"><NavLink to='/services' className='btn btn-ghost rounded-md'>Add service</NavLink></li>
+                                <li className="px-3"><NavLink to='/reviews' className='btn btn-ghost rounded-md'>My reviews</NavLink></li>
+                                <li className="px-3"><NavLink to='/addservice' className='btn btn-ghost rounded-md'>Add service</NavLink></li>
                                 <li><button onClick={handleLogout} className="btn btn-ghost rounded-md">Logout</button></li>
                              </> :'' 
                        }

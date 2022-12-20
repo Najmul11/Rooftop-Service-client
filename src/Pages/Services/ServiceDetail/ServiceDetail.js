@@ -2,6 +2,7 @@ import React from 'react';
 import { BsArrowRight } from 'react-icons/bs';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
+import { Link } from 'react-router-dom';
 
 const ServiceDetail = ({service}) => {
     const {_id, img2, name}=service
@@ -15,7 +16,9 @@ const ServiceDetail = ({service}) => {
             <div className="card-body">
                 <h2 className="card-title">{name}</h2>
                 <div className="card-actions justify-end">
-                <button className="btn text-black  bg-transparent italic border-0 hover:bg-transparent hover:text-teal-500">View details <BsArrowRight className='font bold text-xl ml-1'></BsArrowRight></button>
+                <Link to={`/services/${_id}`}>
+                    <button className="btn text-black  bg-transparent italic border-0 hover:bg-transparent hover:text-teal-500">View details <BsArrowRight className='font bold text-xl ml-1'></BsArrowRight></button>
+                </Link>
                 </div>
             </div>
         </div>
