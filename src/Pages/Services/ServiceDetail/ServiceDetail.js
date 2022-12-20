@@ -1,11 +1,17 @@
 import React from 'react';
 import { BsArrowRight } from 'react-icons/bs';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
 
 const ServiceDetail = ({service}) => {
-    const {_id, img2, name, description}=service
+    const {_id, img2, name}=service
     return (
         <div className="card  dark:bg-gray-300 shadow-md">
-            <figure><img src={img2} alt="Shoes" /></figure>
+            <figure>
+                <PhotoProvider>
+                    <PhotoView src={img2}><img src={img2} alt="" /></PhotoView>
+                </PhotoProvider>
+            </figure>
             <div className="card-body">
                 <h2 className="card-title">{name}</h2>
                 <div className="card-actions justify-end">
