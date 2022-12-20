@@ -8,6 +8,7 @@ import Home from '../Pages/Home/Home/Home'
 import MyReviews from '../Pages/MyReviews/MyReviews'
 import Services from '../Pages/Services/Services'
 import SingleServiceDetail from '../Pages/SingleServiceDetail.js/SingleServiceDetail'
+import PrivateRoute from './PrivateRoute'
 
 
 export const router=createBrowserRouter([
@@ -25,7 +26,6 @@ export const router=createBrowserRouter([
             },
             {
                 path:'/services/:id',
-                // loader:({params})=>fetch(`https://roof-doctor-server-najmul11.vercel.app/services/${params.id}`),
                 element:<SingleServiceDetail></SingleServiceDetail>
             },
             {
@@ -34,11 +34,11 @@ export const router=createBrowserRouter([
             },
             {
                 path:'/reviews',
-                element:<MyReviews></MyReviews>
+                element:<PrivateRoute><MyReviews></MyReviews></PrivateRoute>
             },
             {
                 path:'/addservice',
-                element:<AddService></AddService>
+                element:<PrivateRoute><AddService></AddService></PrivateRoute>
             },
             {
                 path:'/login',
