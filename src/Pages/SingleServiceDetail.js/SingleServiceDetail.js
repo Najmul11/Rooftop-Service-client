@@ -1,12 +1,14 @@
 import React,{useState, useEffect, useContext} from 'react';
 import { InfinitySpin } from 'react-loader-spinner';
 import toast, { Toaster } from 'react-hot-toast';
+import useTitle from '../../hooks/useTitle'
 
 import { Link, useParams } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
 import ReviewCard from './ReviewCard';
 
 const SingleServiceDetail = () => {
+    useTitle('service detail')
     const {user}=useContext(AuthContext)
     const param=useParams()
     const [loading, setLoading]=useState(false)
@@ -17,11 +19,11 @@ const SingleServiceDetail = () => {
     const [reviews, setReviews]=useState([])
     useEffect(()=>{
         setLoading(true)
-        fetch('https://roof-doctor-server-najmul11.vercel.app/reviews')
+        fetch(`https://roof-doctor-server-najmul11.vercel.app/reviews?name=${name}`)
         .then(res=>res.json())
         .then(data=>setReviews(data))
         .finally(()=>setLoading(false))
-    },[])
+    },[name])
 
     const url=`https://roof-doctor-server-najmul11.vercel.app/services/${param.id}`
     useEffect(()=>{
@@ -37,9 +39,10 @@ const SingleServiceDetail = () => {
         e.preventDefault()
         const review=e.target.review.value
         const userDisplayname=user?.displayName
+        const email=user?.email
         const photo=user?.photoURL
 
-        const serviceReview={userReview:review, userName:userDisplayname, userPhoto:photo, serviceName:name}
+        const serviceReview={userReview:review, userName:userDisplayname, userPhoto:photo, serviceName:name,userEmail:email}
         // post review
         fetch('https://roof-doctor-server-najmul11.vercel.app/reviews',{
             method:'POST',
@@ -51,7 +54,7 @@ const SingleServiceDetail = () => {
         .then(res=>{})
         .then(()=>{
             e.target.reset()
-            toast.success('Service added successfully');
+            toast.success('Thanks for the feedback');
         })
     }
     if (loading) {
