@@ -10,7 +10,7 @@ const ServiceDetail = ({service}) => {
         <div className="card  dark:bg-gray-300 shadow-md">
             <figure>
                 <PhotoProvider>
-                    <PhotoView src={img2}><img src={img2} alt="" /></PhotoView>
+                    <PhotoView src={img2}><img src={img2} alt="" className='h-60 w-full' /></PhotoView>
                 </PhotoProvider>
             </figure>
             <div className="card-body">

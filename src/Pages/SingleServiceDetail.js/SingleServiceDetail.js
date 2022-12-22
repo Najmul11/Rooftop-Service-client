@@ -3,11 +3,13 @@ import { InfinitySpin } from 'react-loader-spinner';
 import toast, { Toaster } from 'react-hot-toast';
 import useTitle from '../../hooks/useTitle'
 
-import { Link, useParams } from 'react-router-dom';
+import {  useLocation, useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
 import ReviewCard from './ReviewCard';
 
 const SingleServiceDetail = () => {
+    const location=useLocation()
+    const navigate=useNavigate()
     useTitle('service detail')
     const {user}=useContext(AuthContext)
     const param=useParams()
@@ -34,7 +36,7 @@ const SingleServiceDetail = () => {
         .finally(()=>setLoading(false))
     },[url])
 
-    
+    //post review
     const handleReviewSubmit=e=>{
         e.preventDefault()
         const review=e.target.review.value
@@ -43,7 +45,6 @@ const SingleServiceDetail = () => {
         const photo=user?.photoURL
 
         const serviceReview={userReview:review, userName:userDisplayname, userPhoto:photo, serviceName:name,userEmail:email}
-        // post review
         fetch('https://roof-doctor-server-najmul11.vercel.app/reviews',{
             method:'POST',
             headers:{
@@ -57,6 +58,12 @@ const SingleServiceDetail = () => {
             toast.success('Thanks for the feedback');
         })
     }
+    //  redirect to the service detail page after login to review
+    const handleRedirect=()=>{
+        navigate('/login',{state:{from:location}})
+    }
+
+    // spinner
     if (loading) {
         return <div className='min-h-screen flex items-center justify-center dark:bg-gray-800'>
                 <InfinitySpin width='200' color="#00baa6" />
@@ -88,19 +95,23 @@ const SingleServiceDetail = () => {
                         <div className="card md:w-1/3 bg-gray-100 shadow-md mx-auto my-10">
                             <div className="card-body">
                                 <h2 className="card-title">Please Login to review</h2>
-                               <Link to='/login'>
-                               <button className="btn px-5 py-2 text-black border-teal-400 mt-10 bg-transparent hover:bg-teal-50
+                               <button onClick={handleRedirect} className="btn px-5 py-2 text-black border-teal-400 mt-10 bg-transparent hover:bg-teal-50
                                     hover:border-teal-400 dark:text-white dark:hover:bg-teal-500">Login</button>
-                               </Link>
                             </div>
                        </div>
                     }
-                    
-                    <div className='grid grid-cols-4 gap-8 mt-20'>
-                        {
-                            reviews.map(review=><ReviewCard key={review._id} review={review}></ReviewCard>)
-                        }
-                    </div>
+                    {
+                        reviews.length ===0 ?
+                        <div className='flex items-center justify-center'>
+                            <p className='text-4xl font-medium dark:text-teal-400'>This service has no review</p>
+                        </div> 
+                        :
+                        <div className='grid grid-cols-4 gap-8 mt-20'>
+                            {
+                                reviews.map(review=><ReviewCard key={review._id} review={review}></ReviewCard>)
+                            }
+                        </div>
+                    }
                 </div>
             </div>
             <Toaster />
