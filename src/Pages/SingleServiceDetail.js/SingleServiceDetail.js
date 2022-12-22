@@ -54,6 +54,7 @@ const SingleServiceDetail = () => {
         })
         .then(res=>{})
         .then(()=>{
+            setReviews([...reviews, serviceReview])
             e.target.reset()
             toast.success('Thanks for the feedback');
         })
