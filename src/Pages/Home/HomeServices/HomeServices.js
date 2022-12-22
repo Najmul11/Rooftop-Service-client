@@ -26,7 +26,7 @@ const HomeServices = () => {
                     <div className='flex justify-center'>
                         <InfinitySpin width='200' color="#00baa6" />
                     </div> :
-                    <div className='grid grid-cols-3 gap-8  mt-20'>
+                    <div className='grid md:grid-cols-3 gap-8  mt-20'>
                         {
                             allServices.map(service=><SingleService key={service._id} service={service}></SingleService>)
                         }  

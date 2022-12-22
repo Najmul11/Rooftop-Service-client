@@ -49,9 +49,9 @@ const MyReviews = () => {
                     </div> 
                 </div>
                 :
-                <div className='h-screen dark:bg-gray-800 md:pt-32'>
+                <div className='h-screen dark:bg-gray-800 pt-12 md:pt-32'>
                     <div className="container mx-auto">
-                        <div className='grid grid-cols-2 gap-8'>
+                        <div className='grid md:grid-cols-2 gap-8'>
                             {
                                 reviews.map(review=><MyReviewCard key={review._id} review={review} handleDelete={handleDelete}></MyReviewCard>)
                             }

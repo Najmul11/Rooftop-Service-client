@@ -3,9 +3,9 @@ import React from 'react';
 const ReviewCard = ({review}) => {
     const {userName, userPhoto, userReview}=review
     return (
-        <div className="card bg-gray-100 shadow-sm">
+        <div className="card bg-gray-200 shadow-sm">
             <div className="card-body">
-                <div className='flex gap-3 items-center'>
+                <div className='flex gap-3 '>
                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
                             <img src={userPhoto} alt=''/>

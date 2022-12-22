@@ -26,7 +26,7 @@ const Home = () => {
             </div>
             <HomeServices></HomeServices>
             <div className='dark:bg-gray-800 py-20' id='experience'>
-                <div className='container mx-auto  grid grid-cols-4 justify-items-center'>
+                <div className='container mx-auto  grid md:grid-cols-2 lg:grid-cols-4 md:gap-3 lg:gap-12 justify-items-center'>
                     <Experience number={4} info={'YEARS OF EXPERIENCE'}></Experience>
                     <Experience number={6} info={'QUALITY SERVICES'}></Experience>
                     <Experience number={'350+'} info={'COMPLETED PROJECTS'}></Experience>

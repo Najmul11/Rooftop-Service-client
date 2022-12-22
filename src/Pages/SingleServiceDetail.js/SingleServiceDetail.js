@@ -106,7 +106,7 @@ const SingleServiceDetail = () => {
                             <p className='text-4xl font-medium dark:text-teal-400'>This service has no review</p>
                         </div> 
                         :
-                        <div className='grid grid-cols-4 gap-8 mt-20'>
+                        <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-20'>
                             {
                                 reviews.map(review=><ReviewCard key={review._id} review={review}></ReviewCard>)
                             }
