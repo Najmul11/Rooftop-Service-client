@@ -6,6 +6,7 @@ import useTitle from '../../hooks/useTitle'
 import {  useLocation, useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
 import ReviewCard from './ReviewCard';
+import StartRating from './StartRating';
 
 const SingleServiceDetail = () => {
     const location=useLocation()
@@ -77,6 +78,7 @@ const SingleServiceDetail = () => {
                     <div className='md:w-1/2 pt-8'>
                         <div className="card-body">
                             <h2 className=" card-title text-5xl font-semibold">{name}</h2>
+                            <StartRating stars={4.5} length={reviews.length}></StartRating>
                             <p className='mt-5'>{description}</p>
                             <span className='text-4xl font-medium mt-5'>${price}</span>
                         </div>
@@ -109,7 +111,7 @@ const SingleServiceDetail = () => {
                         :
                         <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-20'>
                             {
-                                reviews.map(review=><ReviewCard key={review._id} review={review}></ReviewCard>)
+                                reviews.map((review,i)=><ReviewCard key={i+'asd'} review={review}></ReviewCard>)
                             }
                         </div>
                     }
