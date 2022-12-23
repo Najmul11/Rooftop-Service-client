@@ -11,7 +11,7 @@ const UpdateReview = () => {
         const review=e.target.review.value
         const newReview={review}
 
-        fetch(`http://localhost:5000/reviews/${param.id}`,{
+        fetch(`https://roof-doctor-server-najmul11.vercel.app/reviews/${param.id}`,{
             method:'PUT',
             headers:{
                 'content-type':'application/json'
