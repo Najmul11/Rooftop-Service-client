@@ -3,20 +3,26 @@ import { AiOutlineStar } from 'react-icons/ai';
 import { FaStar, FaStarHalfAlt } from 'react-icons/fa';
 
 
-const StartRating = ({stars, length}) => {
+const StartRating = ({ratings, length}) => {
     return (
         <div className='flex items-center gap-3'>
-           <div className='flex'>
+           <div className='flex items-center gap-1'>
             {
                     [...Array(5)].map((a,i)=>
-                    <div key={i} className='text-yellow-600 '>
+                    <div key={i} className='text-yellow-400'>
                         {
-                            stars >= i + 1 ? <FaStar/> : stars >= i + 0.5 ? <FaStarHalfAlt /> : <AiOutlineStar />
+                            length === 0 ? <AiOutlineStar className='text-[20.5px]'/> :
+                            <div>
+                                {
+                                ratings >= i + 1 ? <FaStar/> : ratings >= i + 0.5 ? <FaStarHalfAlt/> : <AiOutlineStar className='text-[20.5px]' />
+                                }
+                            </div>
                         }
+                       
                     </div> )   
                 }
            </div>
-            <p className='font-medium'>{length} reviews</p>
+            <p className='font-medium'>( {length} reviews )</p>
         </div>
     );
 };

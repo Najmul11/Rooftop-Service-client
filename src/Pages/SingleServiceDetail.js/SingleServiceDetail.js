@@ -2,11 +2,12 @@ import React,{useState, useEffect, useContext} from 'react';
 import { InfinitySpin } from 'react-loader-spinner';
 import toast, { Toaster } from 'react-hot-toast';
 import useTitle from '../../hooks/useTitle'
-
 import {  useLocation, useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
 import ReviewCard from './ReviewCard';
 import StartRating from './StartRating';
+import StarReview from './StarReview';
+
 
 const SingleServiceDetail = () => {
     const location=useLocation()
@@ -14,12 +15,14 @@ const SingleServiceDetail = () => {
     useTitle('service detail')
     const {user}=useContext(AuthContext)
     const param=useParams()
+
+    let totalStarReview=0
+    const [rating, setRating]=useState(null)
     const [loading, setLoading]=useState(false)
-
     const [service, setService]=useState({})
-    const {img2,name, price, description}=service
-
+    const {img2,name, price, description, _id, ratings}=service
     const [reviews, setReviews]=useState([])
+
     useEffect(()=>{
         setLoading(true)
         fetch(`https://roof-doctor-server-najmul11.vercel.app/reviews?name=${name}`)
@@ -45,7 +48,15 @@ const SingleServiceDetail = () => {
         const email=user?.email
         const photo=user?.photoURL
 
-        const serviceReview={userReview:review, userName:userDisplayname, userPhoto:photo, serviceName:name,userEmail:email}
+        const serviceReview={
+            userReview:review, 
+            userName:userDisplayname,
+            userPhoto:photo,
+            serviceName:name,
+            userEmail:email,
+            starRating:rating
+        }
+
         fetch('https://roof-doctor-server-najmul11.vercel.app/reviews',{
             method:'POST',
             headers:{
@@ -57,7 +68,24 @@ const SingleServiceDetail = () => {
         .then(()=>{
             setReviews([...reviews, serviceReview])
             e.target.reset()
-            toast.success('Thanks for the feedback');
+            toast.success('Thanks for the feedback');   
+        })
+        .finally(()=>{
+            // update rating  to  service
+            for (const review of reviews) {
+             totalStarReview=totalStarReview + review.starRating    
+            }
+            const serviceRating=totalStarReview / reviews.length
+            const newServiceRating={serviceRating}
+
+            fetch(`https://roof-doctor-server-najmul11.vercel.app/services/${_id}`,{
+            method:'PUT',
+            headers:{
+                'content-type':'application/json'
+            },
+            body:JSON.stringify(newServiceRating)
+        }).then(res=>res.json())
+        .then(()=>{})
         })
     }
     //  redirect to the service detail page after login to review
@@ -78,7 +106,7 @@ const SingleServiceDetail = () => {
                     <div className='md:w-1/2 pt-8'>
                         <div className="card-body">
                             <h2 className=" card-title text-5xl font-semibold">{name}</h2>
-                            <StartRating stars={4.5} length={reviews.length}></StartRating>
+                            <StartRating ratings={ratings} length={reviews.length}></StartRating>
                             <p className='mt-5'>{description}</p>
                             <span className='text-4xl font-medium mt-5'>${price}</span>
                         </div>
@@ -91,11 +119,28 @@ const SingleServiceDetail = () => {
                     <h4 className='text-3xl font-medium  text-center text-teal-400'>Reviews</h4>
                     {
                         user? 
-                        <form className='my-10 md:w-1/2 mx-auto relative' onSubmit={handleReviewSubmit}>
-                            <input type="text" placeholder="Your review here...." name='review' className="input border-inherit w-full pr-16" /> 
-                            <button className="btn absolute top-0 right-0 rounded-l-none  text-black border-0  bg-teal-200 hover:bg-teal-400 hover:border-0">Submit</button>
-                        </form> :
-                        <div className="card md:w-1/3 bg-gray-100 shadow-md mx-auto my-10">
+                        <>
+                            {
+                                rating ?
+                                <>
+                                <div className='md:w-1/2 mx-auto flex justify-center gap-2 mb-3 mt-10'>
+                                    <h4 className=''>Rate the service </h4>
+                                    <StarReview rating={rating} setRating={setRating}></StarReview>
+                                </div>
+                                <form className='mb-10 md:w-1/2 mx-auto relative' onSubmit={handleReviewSubmit}>
+                                    <input type="text" placeholder="Your review here...." name='review' className="input border-inherit w-full pr-16" /> 
+                                    <button className="btn absolute top-0 right-0 rounded-l-none  text-black border-0  bg-teal-200 hover:bg-teal-400 hover:border-0">Submit</button>
+                                </form> 
+                                </>
+                                :
+                                 <div className='md:w-1/2 mx-auto  flex justify-center my-10 gap-2'>
+                                    <h4 className=''>Rate the service </h4>
+                                    <StarReview rating={rating} setRating={setRating}></StarReview>
+                                </div>
+                            }
+                        </>
+                        :
+                        <div className="card md:w-1/3 bg-gray-100 shadow-md mx-auto my-10 ">
                             <div className="card-body">
                                 <h2 className="card-title">Please Login to review</h2>
                                <button onClick={handleRedirect} className="btn px-5 py-2 text-black border-teal-400 mt-10 bg-transparent hover:bg-teal-50
